@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Details - Comic Verse</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Comic Verse</h1>
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="details.html">Details of last Checked</a>
+        <a href="search.html" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </a>
+      </nav>
+      <div id="auth-action">
+        <!-- Auth action content will be injected by JavaScript -->
+      </div>
+    </header>
+
+    <main class="details-main">
+      <div id="comic-details">
+        <!-- Details will be dynamically loaded here -->
+        <p class="loading-text">Loading details...</p>
+      </div>
+    </main>
+    <script type="module" src="js/details.js"></script>
+  </body>
+</html>

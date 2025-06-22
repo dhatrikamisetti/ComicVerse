@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categories - Comic Verse</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Comic Verse</h1>
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="details.html">Details of Last Checked</a>
+        <a href="search.html" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </a>
+      </nav>
+      <div id="auth-action"></div>
+    </header>
+
+    <main class="category-page-main">
+      <h2 class="page-title">Browse Categories</h2>
+      <ul class="categories-list">
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="issues.html">Issues</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="objects.html">Objects</a></li>
+        <li><a href="people.html">People</a></li>
+        <li><a href="publishers.html">Publishers</a></li>
+        <li><a href="series.html">Series</a></li>
+        <li><a href="teams.html">Teams</a></li>
+        <li><a href="volumes.html">Volumes</a></li>
+      </ul>
+    </main>
+
+    <script type="module" src="js/export.js"></script>
+    <script type="module">
+      import { authAction } from "./js/export.js";
+      document.addEventListener("DOMContentLoaded", () => {
+        authAction(); // Call authAction for this page
+      });
+    </script>
+  </body>
+</html>

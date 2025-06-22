@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Comic Verse</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Comic Verse</h1>
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="details.html">Details of Last Checked</a>
+        <a href="search.html" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </a>
+      </nav>
+      <div id="auth-action"></div>
+    </header>
+    <main class="dashboard-main">
+      <section id="userProfile" class="dashboard-section">
+        <h2><i class="fas fa-user-circle"></i> User Profile</h2>
+        <div id="profileDetails" class="profile-details">
+          <img
+            id="avatar"
+            src="images/user.jpg"
+            alt="User Avatar"
+            class="profile-avatar"
+          />
+          <div class="profile-info">
+            <p>
+              <strong>Username:</strong> <span id="usernameDisplay">N/A</span>
+            </p>
+            <p><strong>Email:</strong> <span id="emailDisplay">N/A</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="searchHistory" class="dashboard-section">
+        <h2><i class="fas fa-search"></i> Search History</h2>
+        <ul id="searchList" class="history-list"></ul>
+        <button id="clearSearchHistory" class="history-clear-button">
+          Clear History
+        </button>
+      </section>
+
+      <section id="viewHistory" class="dashboard-section">
+        <h2><i class="fas fa-history"></i> View History</h2>
+        <div id="viewedItems" class="history-list view-history-list"></div>
+        <button id="clearViewHistory" class="history-clear-button">
+          Clear History
+        </button>
+      </section>
+    </main>
+
+    <script type="module" src="js/dashboard.js"></script>
+  </body>
+</html>

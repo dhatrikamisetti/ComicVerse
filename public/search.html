@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search - Comic Verse</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Comic Verse</h1>
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="details.html">Details of last Checked</a>
+        <a href="search.html" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </a>
+      </nav>
+      <div id="auth-action">
+        <!-- Auth action content will be injected by JavaScript -->
+      </div>
+    </header>
+
+    <section class="search-section">
+      <form class="search-input-group">
+        <input type="text" id="searchBar" placeholder="Search for comics..." />
+        <button id="searchButton" type="button" class="search-button">
+          Search
+        </button>
+      </form>
+
+      <form id="searchForm" method="get" class="filter-form">
+        <fieldset>
+          <legend><i class="fas fa-filter"></i> Filter by:</legend>
+          <div class="filter-options">
+            <label
+              ><input type="checkbox" value="character" name="filter" />
+              Characters</label
+            >
+            <label
+              ><input type="checkbox" value="concept" name="filter" />
+              Concepts</label
+            >
+            <label
+              ><input type="checkbox" value="issue" name="filter" />
+              Issues</label
+            >
+            <label
+              ><input type="checkbox" value="origin" name="filter" />
+              Origins</label
+            >
+            <label
+              ><input type="checkbox" value="object" name="filter" />
+              Objects</label
+            >
+            <label
+              ><input type="checkbox" value="location" name="filter" />
+              Locations</label
+            >
+            <label
+              ><input type="checkbox" value="story_arc" name="filter" /> Story
+              Arcs</label
+            >
+            <label
+              ><input type="checkbox" value="team" name="filter" /> Teams</label
+            >
+            <label
+              ><input type="checkbox" value="volume" name="filter" />
+              Volumes</label
+            >
+            <label
+              ><input type="checkbox" value="publisher" name="filter" />
+              Publishers</label
+            >
+            <label
+              ><input type="checkbox" value="person" name="filter" />
+              People</label
+            >
+            <label
+              ><input type="checkbox" value="video" name="filter" />
+              Videos</label
+            >
+          </div>
+          <button type="submit" id="applyFilterButton" class="filter-button">
+            Apply Filters
+          </button>
+        </fieldset>
+      </form>
+    </section>
+
+    <h1 class="search-results-title">Search Results:</h1>
+    <main id="result" class="search-results-grid"></main>
+    <div id="loading-indicator" class="loading-indicator">
+      <i class="fas fa-spinner fa-spin"></i>
+      Loading...
+    </div>
+
+    <script type="module" src="js/search.js"></script>
+  </body>
+</html>

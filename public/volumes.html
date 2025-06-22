@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>volumes - Comic Verse</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Comic Verse</h1>
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="details.html">Details of Last Checked</a>
+        <a href="search.html" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </a>
+      </nav>
+      <div id="auth-action"></div>
+    </header>
+
+    <main class="category-page-main">
+      <h2 class="page-title">All volumes</h2>
+
+      <div class="search-section">
+        <div class="search-input-group">
+          <label for="nameSearch" class="visually-hidden"
+            >Search volumes by Name:</label
+          >
+          <input
+            type="text"
+            id="nameSearch"
+            placeholder="Enter volume name"
+            aria-label="volume name search input"
+          />
+          <button id="searchButton" class="search-button" aria-label="Search">
+            Search
+          </button>
+        </div>
+        <div id="loading" class="loading-indicator" style="display: none">
+          Loading volumes...
+        </div>
+      </div>
+
+      <div id="volumes" class="search-results-grid"></div>
+
+      <div class="pagination-controls">
+        <div id="pages" class="page-buttons-container"></div>
+        <div class="jump-to-page">
+          <label for="Jump">Jump to page:</label>
+          <input
+            type="text"
+            id="Jump"
+            placeholder="No."
+            aria-label="Jump to page number"
+          />
+          <button id="jumpButton" class="jump-button">Go</button>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="js/volumes.js"></script>
+  </body>
+</html>

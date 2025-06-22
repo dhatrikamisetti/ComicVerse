@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Comic Verse</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/auth.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-header">
+        <h1>Comic Verse</h1>
+        <nav class="auth-nav">
+          <a href="home.html">Home</a>
+          <a href="categories.html">Categories</a>
+          <a href="details.html">Details</a>
+          <a href="login.html" id="login-link">Login</a>
+        </nav>
+      </div>
+
+      <div class="auth-content">
+        <div class="graphic-section">
+          <i class="fas fa-user-plus graphic-icon"></i>
+          <div class="graphic-text">
+            <h2>Join the Comic Verse Community</h2>
+            <p>
+              Create your account to track your favorite comics, characters, and
+              creators.
+            </p>
+          </div>
+
+          <!-- Comic bubbles -->
+          <div class="comic-bubble bubble-1">Whoosh!</div>
+          <div class="comic-bubble bubble-2">Zap!</div>
+        </div>
+
+        <div class="form-section">
+          <h2>Create Your Account</h2>
+          <form id="register-form">
+            <div class="input-group">
+              <label for="name">Username</label>
+              <i class="fas fa-user input-icon"></i>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Choose a username"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="email">Email</label>
+              <i class="fas fa-envelope input-icon"></i>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="password">Password</label>
+              <i class="fas fa-lock input-icon"></i>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a password"
+                required
+              />
+              <p class="password-note">
+                Password should be at least 6 characters
+              </p>
+            </div>
+
+            <button type="submit" class="btn">
+              <i class="fas fa-user-plus"></i> Register
+            </button>
+
+            <p class="toggle-text">
+              Already have an account?
+              <a href="login.html" id="toggle-link">Login</a>
+            </p>
+
+            <p id="message"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Function to handle user registration
+      async function register(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const name = document.getElementById("name").value;
+        const messageBox = document.getElementById("message");
+
+        // Clear previous messages
+        messageBox.textContent = "";
+        messageBox.style.color = "black";
+
+        try {
+          // Store both email and username immediately
+          localStorage.setItem("userEmail", email);
+          localStorage.setItem("registeredUsername", name);
+
+          const response = await fetch("/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password, name }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            messageBox.style.color = "green";
+            messageBox.textContent =
+              "Registration successful! Redirecting to login...";
+
+            setTimeout(() => {
+              window.location.href = "/login.html";
+            }, 1000);
+          } else {
+            // Clear stored values if registration fails
+            localStorage.removeItem("userEmail");
+            localStorage.removeItem("registeredUsername");
+            messageBox.style.color = "red";
+            messageBox.textContent = result.error || "Registration failed.";
+          }
+        } catch (error) {
+          localStorage.removeItem("userEmail");
+          localStorage.removeItem("registeredUsername");
+          console.error("Error during registration:", error);
+          messageBox.style.color = "red";
+          messageBox.textContent = "An error occurred. Please try again.";
+        }
+      }
+
+      // Attach the register function to the form's submit event
+      document.querySelector("form").addEventListener("submit", register);
+
+      // Attach event listener
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", register);
+
+      // Toggle between login/register
+      document
+        .getElementById("toggle-link")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          window.location.href = "login.html";
+        });
+    </script>
+  </body>
+</html>

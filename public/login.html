@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Comic Verse</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/auth.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-header">
+        <h1>Comic Verse</h1>
+        <nav class="auth-nav">
+          <a href="home.html">Home</a>
+          <a href="categories.html">Categories</a>
+          <a href="details.html">Details</a>
+          <a href="register.html">Register</a>
+        </nav>
+      </div>
+
+      <div class="auth-content">
+        <div class="graphic-section">
+          <i class="fas fa-book-open graphic-icon"></i>
+          <div class="graphic-text">
+            <h2>Unlock the Comic Universe</h2>
+            <p>
+              Access your personal collection and dive into the world of comics
+              with Comic Verse.
+            </p>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>Welcome Back!</h2>
+          <form id="auth-form">
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+
+            <p class="toggle-text">
+              Don't have an account? <a href="register.html">Register</a>
+            </p>
+
+            <p id="message"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      if (localStorage.getItem("idToken")) {
+        window.location.href = "/";
+      }
+      // Function to handle user login
+      async function login(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const messageBox = document.getElementById("message");
+
+        // Clear previous messages
+        messageBox.textContent = "";
+        messageBox.style.color = "black";
+
+        try {
+          // Store email immediately in localStorage
+          localStorage.setItem("userEmail", email);
+
+          const response = await fetch("/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            localStorage.setItem("idToken", result.idToken);
+
+            // Get username from registration or use email prefix
+            const username =
+              localStorage.getItem("registeredUsername") || email.split("@")[0];
+            localStorage.setItem("displayUsername", username);
+
+            messageBox.style.color = "green";
+            messageBox.textContent = "Login successful! Redirecting...";
+
+            setTimeout(() => {
+              window.location.href = "/home.html";
+            }, 1000);
+          } else {
+            // Clear stored email if login fails
+            localStorage.removeItem("userEmail");
+            messageBox.style.color = "red";
+            messageBox.textContent = result.error || "Login failed.";
+          }
+        } catch (error) {
+          localStorage.removeItem("userEmail");
+          console.error("Error during login:", error);
+          messageBox.style.color = "red";
+          messageBox.textContent = "An error occurred. Please try again.";
+        }
+      }
+
+      // Attach the login function to the form's submit event
+      document.getElementById("auth-form").addEventListener("submit", login);
+    </script>
+  </body>
+</html>
